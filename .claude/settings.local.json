@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create:*)",
+      "Bash(npm install:*)",
+      "Bash(npx tailwindcss:*)",
+      "Bash(./node_modules/.bin/tailwindcss init:*)",
+      "Bash(npm run:*)",
+      "Bash(dir \"C:/Users/SULTAN1/OneDrive - Umm Al-Qura University/سطح المكتب/Bitaqa/frontend/public/\")",
+      "Bash(npx vite:*)",
+      "Bash(node -e ':*)"
+    ]
+  }
+}
