@@ -23,50 +23,84 @@ function CheckIcon() {
   )
 }
 
+/* ── Dark purple panel — same as hero ── */
 function AuthPanel() {
+  const features = [
+    'بطاقة شخصية احترافية',
+    'رابط مخصص باسمك',
+    'إحصائيات الزيارات',
+    'مجاني تماماً',
+  ]
+
   return (
-    <div className="hidden lg:flex flex-col justify-between h-full p-12 bg-gradient-to-br from-indigo-600 via-indigo-700 to-violet-800 relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-full">
-        <div className="absolute top-[-80px] right-[-80px] w-80 h-80 bg-white/10 rounded-full" />
-        <div className="absolute bottom-[-60px] left-[-60px] w-64 h-64 bg-violet-400/20 rounded-full" />
-        <div className="absolute inset-0 opacity-10"
-          style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
+    <div
+      className="hidden lg:flex flex-col justify-between h-full p-12 relative overflow-hidden"
+      style={{ background: 'linear-gradient(135deg, #0d0520 0%, #130a2e 45%, #1a0d3d 75%, #0f0825 100%)' }}
+    >
+      {/* Aurora orbs */}
+      <div style={{
+        position: 'absolute', top: '-120px', right: '-80px',
+        width: '420px', height: '420px', borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(139,92,246,0.35) 0%, transparent 70%)',
+        filter: 'blur(40px)', pointerEvents: 'none',
+      }} />
+      <div style={{
+        position: 'absolute', bottom: '-100px', left: '-60px',
+        width: '380px', height: '380px', borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(109,40,217,0.3) 0%, transparent 70%)',
+        filter: 'blur(50px)', pointerEvents: 'none',
+      }} />
+      <div style={{
+        position: 'absolute', top: '45%', left: '30%',
+        width: '300px', height: '300px', borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(167,139,250,0.15) 0%, transparent 70%)',
+        filter: 'blur(35px)', pointerEvents: 'none',
+      }} />
+
+      {/* Logo */}
+      <div className="relative z-10">
+        <span className="text-3xl font-bold text-white tracking-tight" style={{ fontFamily: 'Cairo, sans-serif' }}>
+          بِطاقة
+        </span>
       </div>
 
-      <div className="relative">
-        <span className="text-3xl font-bold text-white tracking-tight">بِطاقة</span>
-      </div>
-
-      <div className="relative space-y-8">
+      {/* Center content */}
+      <div className="relative z-10 space-y-8">
         <div>
-          <h2 className="text-4xl font-bold text-white leading-tight mb-4">
+          <h2 className="text-4xl font-bold text-white leading-snug mb-4" style={{ fontFamily: 'Cairo, sans-serif' }}>
             ابنِ هويتك
             <br />المهنية اليوم
           </h2>
-          <p className="text-indigo-200 text-base leading-relaxed">
-            انضم وأنشئ بطاقتك الاحترافية
-            في أقل من ٥ دقائق
+          <p className="text-purple-200 text-base leading-relaxed opacity-80" style={{ fontFamily: 'Cairo, sans-serif' }}>
+            انضم وأنشئ بطاقتك الاحترافية في أقل من ٥ دقائق
           </p>
         </div>
 
+        {/* Feature list */}
         <div className="space-y-3">
-          {[
-            'بطاقة شخصية احترافية',
-            'رابط مخصص باسمك',
-            'إحصائيات الزيارات',
-            'مجاني تماماً',
-          ].map(item => (
-            <div key={item} className="flex items-center gap-3 text-white">
-              <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+          {features.map((item, i) => (
+            <div
+              key={item}
+              className="flex items-center gap-3"
+              style={{ animation: `fadeInUp 0.4s ease ${0.1 * i}s both` }}
+            >
+              <div style={{
+                width: '22px', height: '22px', borderRadius: '50%',
+                background: 'rgba(139,92,246,0.3)',
+                border: '1px solid rgba(139,92,246,0.5)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                color: '#c4b5fd', flexShrink: 0,
+              }}>
                 <CheckIcon />
               </div>
-              <span className="text-sm">{item}</span>
+              <span style={{ color: 'rgba(255,255,255,0.85)', fontSize: '14px', fontFamily: 'Cairo, sans-serif' }}>{item}</span>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="relative text-indigo-300 text-sm">
+      {/* Bottom */}
+      <div className="relative z-10" style={{ color: 'rgba(196,181,253,0.6)', fontSize: '13px', fontFamily: 'Cairo, sans-serif' }}>
         انضم اليوم — لا بطاقة ائتمانية مطلوبة
       </div>
     </div>
@@ -75,17 +109,24 @@ function AuthPanel() {
 
 function StrengthBar({ password }) {
   const score = [/.{8,}/, /[A-Z]/, /[0-9]/, /[^A-Za-z0-9]/].filter(r => r.test(password)).length
-  const colors = ['bg-red-400', 'bg-orange-400', 'bg-yellow-400', 'bg-green-500']
+  const colors = ['#f87171', '#fb923c', '#facc15', '#4ade80']
   const labels = ['', 'ضعيفة', 'متوسطة', 'جيدة', 'قوية']
+  const textColors = ['', '#ef4444', '#f97316', '#ca8a04', '#16a34a']
   if (!password) return null
   return (
     <div className="mt-2 space-y-1">
       <div className="flex gap-1">
         {[0, 1, 2, 3].map(i => (
-          <div key={i} className={`h-1 flex-1 rounded-full transition-all duration-300 ${i < score ? colors[score - 1] : 'bg-gray-200'}`} />
+          <div key={i} style={{
+            height: '3px', flex: 1, borderRadius: '9999px',
+            background: i < score ? colors[score - 1] : '#e5e7eb',
+            transition: 'background 0.3s ease',
+          }} />
         ))}
       </div>
-      {score > 0 && <p className={`text-xs ${score < 2 ? 'text-red-500' : score < 3 ? 'text-yellow-600' : 'text-green-600'}`}>{labels[score]}</p>}
+      {score > 0 && (
+        <p style={{ fontSize: '12px', color: textColors[score] }}>{labels[score]}</p>
+      )}
     </div>
   )
 }
@@ -128,12 +169,12 @@ export default function RegisterPage() {
     <div className="min-h-screen grid lg:grid-cols-2">
       <AuthPanel />
 
-      <div className="flex items-center justify-center px-6 py-12 bg-white">
-        <div className="w-full max-w-sm page-enter">
+      <div className="flex items-center justify-center px-6 py-12 bg-white min-h-screen">
+        <div className="w-full max-w-sm" style={{ animation: 'fadeInUp 0.5s ease both' }}>
 
           {/* Back to home */}
-          <div className="mb-6">
-            <Link to="/" className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-indigo-600 transition">
+          <div className="mb-8">
+            <Link to="/" className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-violet-600 transition-colors duration-200">
               <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
                 <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
               </svg>
@@ -141,13 +182,14 @@ export default function RegisterPage() {
             </Link>
           </div>
 
+          {/* Mobile logo */}
           <div className="lg:hidden text-center mb-8">
-            <span className="text-3xl font-bold text-indigo-600">بِطاقة</span>
+            <span className="text-3xl font-bold" style={{ color: '#6d28d9', fontFamily: 'Cairo, sans-serif' }}>بِطاقة</span>
           </div>
 
           <div className="mb-8">
-            <h1 className="text-2xl font-bold text-gray-900 mb-1">إنشاء حساب جديد</h1>
-            <p className="text-gray-500 text-sm">ابدأ مجاناً — لا حاجة لبطاقة ائتمانية</p>
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">إنشاء حساب جديد ✨</h1>
+            <p className="text-gray-400 text-sm">ابدأ مجاناً — لا حاجة لبطاقة ائتمانية</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -178,7 +220,9 @@ export default function RegisterPage() {
                   onChange={handleChange} required autoComplete="new-password"
                   placeholder="••••••••" className="input pl-10" />
                 {form.confirmPassword && (
-                  <span className={`absolute left-3 top-1/2 -translate-y-1/2 text-sm ${form.password === form.confirmPassword ? 'text-green-500' : 'text-red-400'}`}>
+                  <span className={`absolute left-3 top-1/2 -translate-y-1/2 text-sm font-bold ${
+                    form.password === form.confirmPassword ? 'text-green-500' : 'text-red-400'
+                  }`}>
                     {form.password === form.confirmPassword ? '✓' : '✗'}
                   </span>
                 )}
@@ -186,7 +230,8 @@ export default function RegisterPage() {
             </div>
 
             {error && (
-              <div className="scale-in flex items-center gap-2 rounded-xl bg-red-50 border border-red-100 px-4 py-3 text-sm text-red-600">
+              <div className="flex items-center gap-2 rounded-xl bg-red-50 border border-red-100 px-4 py-3 text-sm text-red-600"
+                style={{ animation: 'fadeInUp 0.3s ease both' }}>
                 <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 shrink-0">
                   <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
                 </svg>
@@ -194,7 +239,16 @@ export default function RegisterPage() {
               </div>
             )}
 
-            <button type="submit" disabled={loading} className="btn-primary w-full mt-2">
+            <button
+              type="submit" disabled={loading}
+              className="w-full flex items-center justify-center gap-2 py-3 px-6 rounded-xl text-white font-semibold text-sm transition-all duration-200"
+              style={{
+                background: loading ? '#7c3aed' : 'linear-gradient(135deg, #7c3aed, #6d28d9)',
+                boxShadow: loading ? 'none' : '0 4px 20px rgba(109,40,217,0.4)',
+              }}
+              onMouseEnter={e => { if (!loading) e.currentTarget.style.transform = 'translateY(-1px)' }}
+              onMouseLeave={e => { e.currentTarget.style.transform = 'none' }}
+            >
               {loading ? (
                 <>
                   <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -204,14 +258,25 @@ export default function RegisterPage() {
             </button>
           </form>
 
-          <p className="text-center text-sm text-gray-500 mt-6">
-            لديك حساب بالفعل؟{' '}
-            <Link to="/login" className="text-indigo-600 font-semibold hover:text-indigo-700 transition">
-              تسجيل الدخول
-            </Link>
-          </p>
+          <div className="mt-6 pt-6 border-t border-gray-100 text-center">
+            <p className="text-sm text-gray-500">
+              لديك حساب بالفعل؟{' '}
+              <Link to="/login" className="font-semibold transition-colors duration-200" style={{ color: '#7c3aed' }}
+                onMouseEnter={e => e.target.style.color = '#5b21b6'}
+                onMouseLeave={e => e.target.style.color = '#7c3aed'}>
+                تسجيل الدخول
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
+
+      <style>{`
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(16px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </div>
   )
 }
