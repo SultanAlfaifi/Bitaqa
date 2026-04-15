@@ -334,7 +334,7 @@ export default function LandingPage() {
                 {[
                   { val: '٣', sub: 'خطوات فقط' },
                   { val: '< ٥ دقائق', sub: 'وبطاقتك جاهزة' },
-                  { val: '١٠٠٪ مجاني', sub: 'للأبد' },
+                  { val: 'مجاني', sub: 'إنشاء الحساب' },
                 ].map((s, i) => (
                   <div key={i} className="px-3 py-5 text-center">
                     <p className="text-lg font-black text-white leading-none mb-1">{s.val}</p>
@@ -439,31 +439,82 @@ export default function LandingPage() {
       </section>
 
       {/* ══ HOW IT WORKS ══ */}
-      <section className="py-28 px-6" style={{ background: 'linear-gradient(180deg,#fafafe 0%,#f0ecff 100%)' }}>
+      <section className="py-28 px-6 bg-white">
         <div className="max-w-5xl mx-auto">
-          <Reveal className="text-center mb-20">
+          <Reveal className="text-center mb-16">
             <p className="text-xs font-bold text-indigo-600 uppercase tracking-[0.2em] mb-3">كيف تبدأ</p>
-            <h2 className="text-4xl sm:text-5xl font-black text-gray-900 mb-4">ثلاث خطوات فقط</h2>
-            <p className="text-gray-400 leading-relaxed">من التسجيل لنشر بطاقتك في أقل من ٥ دقائق</p>
+            <h2 className="text-4xl sm:text-5xl font-black text-gray-900 mb-4">ثلاث خطوات وبطاقتك جاهزة</h2>
+            <p className="text-gray-400 leading-relaxed max-w-sm mx-auto">من التسجيل لنشر بطاقتك الاحترافية — كله في أقل من ٥ دقائق</p>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 relative">
-            {/* Connector */}
-            <div className="hidden md:block absolute top-14 right-[20%] left-[20%] h-px"
-              style={{ background: 'linear-gradient(to left, #bae6fd, #c4b5fd, #a5b4fc)' }} />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
+            {/* Connecting dashed line */}
+            <div className="hidden md:block absolute top-16 right-[calc(33%+24px)] left-[calc(33%+24px)] h-px border-t-2 border-dashed border-indigo-100" />
 
             {[
-              { n: '١', title: 'سجّل حسابك', desc: 'بريدك الإلكتروني فقط — مجاني تماماً', grad: 'from-indigo-500 to-indigo-600', sh: 'shadow-indigo-200', delay: 0, dir: 'right' },
-              { n: '٢', title: 'خصّص بطاقتك', desc: 'أضف مهاراتك ومشاريعك وروابطك بسهولة', grad: 'from-violet-500 to-violet-600', sh: 'shadow-violet-200', delay: 150, dir: '' },
-              { n: '٣', title: 'شارك مع العالم', desc: 'انشر رابطك في LinkedIn وأي مكان تريده', grad: 'from-sky-500 to-blue-600', sh: 'shadow-sky-200', delay: 300, dir: 'left' },
+              {
+                n: '01', delay: 0, dir: 'right',
+                icon: (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="w-7 h-7">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                ),
+                iconBg: 'rgba(99,102,241,0.1)', iconColor: '#6366f1',
+                title: 'أنشئ حسابك',
+                desc: 'سجّل ببريدك الإلكتروني في ثوانٍ — بدون بطاقة ائتمانية أو التزامات',
+                tag: 'تسجيل مجاني',
+                tagColor: '#6366f1', tagBg: 'rgba(99,102,241,0.08)',
+              },
+              {
+                n: '02', delay: 150, dir: '',
+                icon: (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="w-7 h-7">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                  </svg>
+                ),
+                iconBg: 'rgba(139,92,246,0.1)', iconColor: '#8b5cf6',
+                title: 'خصّص بطاقتك',
+                desc: 'أضف مهاراتك ومشاريعك وروابط تواصلك — لوحة تحكم سهلة وسريعة',
+                tag: 'كل شيء في مكان واحد',
+                tagColor: '#8b5cf6', tagBg: 'rgba(139,92,246,0.08)',
+              },
+              {
+                n: '03', delay: 300, dir: 'left',
+                icon: (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="w-7 h-7">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                  </svg>
+                ),
+                iconBg: 'rgba(14,165,233,0.1)', iconColor: '#0ea5e9',
+                title: 'شارك مع العالم',
+                desc: 'احصل على رابطك المخصص وشاركه في CV وLinkedIn وأي مكان تريد',
+                tag: 'رابطك الخاص',
+                tagColor: '#0ea5e9', tagBg: 'rgba(14,165,233,0.08)',
+              },
             ].map((step) => (
               <Reveal key={step.n} delay={step.delay} dir={step.dir}>
-                <div className="flex flex-col items-center text-center group">
-                  <div className={`w-28 h-28 rounded-3xl bg-gradient-to-br ${step.grad} flex items-center justify-center text-white text-5xl font-black mb-7 shadow-2xl ${step.sh} group-hover:scale-105 group-hover:-rotate-2 transition-transform duration-300`}>
+                <div className="group bg-white border border-gray-100 rounded-2xl p-8 hover:border-indigo-100 hover:shadow-xl hover:shadow-indigo-50 hover:-translate-y-1.5 transition-all duration-300 relative">
+                  {/* Step number */}
+                  <span className="absolute top-6 left-6 text-xs font-black text-gray-200 tracking-widest" style={{ fontFamily: 'Inter, sans-serif' }}>
                     {step.n}
+                  </span>
+
+                  {/* Icon */}
+                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110"
+                    style={{ background: step.iconBg, color: step.iconColor }}>
+                    {step.icon}
                   </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-3">{step.title}</h3>
-                  <p className="text-sm text-gray-400 leading-relaxed max-w-xs">{step.desc}</p>
+
+                  {/* Text */}
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">{step.title}</h3>
+                  <p className="text-sm text-gray-400 leading-relaxed mb-5">{step.desc}</p>
+
+                  {/* Tag */}
+                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full"
+                    style={{ color: step.tagColor, background: step.tagBg }}>
+                    <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: step.tagColor, display: 'inline-block' }} />
+                    {step.tag}
+                  </span>
                 </div>
               </Reveal>
             ))}
@@ -490,7 +541,7 @@ export default function LandingPage() {
               <div className="relative">
                 <div className="inline-flex items-center gap-2 bg-indigo-500/15 border border-indigo-400/25 rounded-full px-4 py-1.5 text-xs text-indigo-300 font-semibold mb-6">
                   <span className="pulse-dot w-1.5 h-1.5 bg-indigo-400 rounded-full" />
-                  مجاني للأبد — ابدأ الآن
+                  أنشئ حسابك مجاناً — الآن
                 </div>
                 <h2 className="text-4xl sm:text-5xl font-black text-white mb-5 leading-tight">
                   جاهز تبني بطاقتك؟
@@ -520,7 +571,7 @@ export default function LandingPage() {
           <Link to="/" className="text-xl font-black bg-gradient-to-l from-indigo-600 to-violet-600 bg-clip-text text-transparent">
             بِطاقة
           </Link>
-          <p className="text-sm text-gray-400">بطاقتك المهنية الرقمية — مجاناً للأبد</p>
+          <p className="text-sm text-gray-400">حضورك المهني في رابط واحد</p>
           <div className="flex items-center gap-6 text-sm text-gray-400">
             <Link to="/login"   className="hover:text-indigo-600 transition-colors">تسجيل الدخول</Link>
             <Link to="/register" className="hover:text-indigo-600 transition-colors">إنشاء حساب</Link>
