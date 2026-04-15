@@ -95,7 +95,14 @@ export default function LoginPage() {
       await login(form.email, form.password)
       navigate('/dashboard')
     } catch (err) {
-      setError(err.response?.data?.message || 'البريد الإلكتروني أو كلمة المرور غير صحيحة')
+      const status = err.response?.status
+      if (status === 401 || status === 400) {
+        setError('البريد الإلكتروني أو كلمة المرور غير صحيحة')
+      } else if (status >= 500 || !err.response) {
+        setError('حدث خطأ في الخادم، يرجى المحاولة لاحقاً')
+      } else {
+        setError(err.response?.data?.message || 'البريد الإلكتروني أو كلمة المرور غير صحيحة')
+      }
     } finally {
       setLoading(false)
     }
@@ -108,6 +115,16 @@ export default function LoginPage() {
       {/* Form side */}
       <div className="flex items-center justify-center px-6 py-12 bg-white">
         <div className="w-full max-w-sm page-enter">
+
+          {/* Back to home */}
+          <div className="mb-6">
+            <Link to="/" className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-indigo-600 transition">
+              <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+                <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+              </svg>
+              الرئيسية
+            </Link>
+          </div>
 
           {/* Mobile logo */}
           <div className="lg:hidden text-center mb-8">
