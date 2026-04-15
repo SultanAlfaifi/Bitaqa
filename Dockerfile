@@ -25,8 +25,8 @@ RUN mvn dependency:go-offline -DskipFrontend=true -q
 # Copy source
 COPY src ./src
 
-# Copy the already-built frontend into the static resources folder
-COPY --from=frontend-build /app/frontend/dist/ ./src/main/resources/static/
+# Copy the already-built frontend (vite outDir = ../src/main/resources/static)
+COPY --from=frontend-build /app/src/main/resources/static/ ./src/main/resources/static/
 
 # Build the JAR (skip tests + skip frontend plugin since we already built it)
 RUN mvn package -DskipTests -DskipFrontend=true -q
