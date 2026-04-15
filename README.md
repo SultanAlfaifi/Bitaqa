@@ -247,7 +247,7 @@ This project ships with a production-ready multi-stage `Dockerfile`.
 
 <div align="center">
 
-Built with ❤️ for Arab developers
+Made in Saudi Arabia 🇸🇦
 
 **[Try Bitaqa now →](https://bitaqa-production.up.railway.app)**
 
